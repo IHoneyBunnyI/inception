@@ -1,5 +1,7 @@
 #NGINX
 
+#docker inspect -f "{{ .RestartCount }}" <container_id> //чтобы проверить перезапуск
+# docker exec nginx pkill -9 nginx
 FROM alpine:3.12
 
 RUN apk update && apk upgrade && apk add nginx \

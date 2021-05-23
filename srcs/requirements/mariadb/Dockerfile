@@ -2,4 +2,4 @@
 
 FROM alpine:3.12
 
-VOLUME ["/home/rvernon/data"]
+RUN apk update && apk upgrade
