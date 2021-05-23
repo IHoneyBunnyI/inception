@@ -3,8 +3,11 @@ services:
     nginx:
         container_name: nginx
         build: requirements/nginx/
+        hostname: rvernon.42.fr
         ports:
             - 443:443
+        environment:
+            - VIRTUAL_HOST=whoami.local
         volumes:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         restart: always
@@ -15,6 +18,10 @@ services:
         volumes:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         build: requirements/wordpress/
+        environment:
+              - WORDPRESS_DB_USER=$MYSQL_USER
+              - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+              - WORDPRESS_DB_NAME=wordpress
         ports:
             - 9000:9000
         restart: always
@@ -27,4 +34,3 @@ services:
             - 3306:3306
         volumes:
             - /home/rvernon/data/maridb:/var/www/mariadb
-        restart: always
