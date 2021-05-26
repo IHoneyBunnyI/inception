@@ -4,6 +4,8 @@ services:
         container_name: nginx
         build: requirements/nginx/
         hostname: rvernon.42.fr
+        env_file:
+            - ./.env
         ports:
             - 443:443
         environment:
@@ -18,6 +20,8 @@ services:
         volumes:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         build: requirements/wordpress/
+        env_file:
+            - ./.env
         environment:
               - WORDPRESS_DB_USER=$MYSQL_USER
               - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
@@ -29,6 +33,8 @@ services:
 
     mariadb:
         container_name: mariadb
+        env_file:
+            - ./.env
         build: requirements/mariadb/
         ports:
             - 3306:3306
