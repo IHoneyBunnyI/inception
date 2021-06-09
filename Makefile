@@ -8,6 +8,7 @@ run:
 
 clean:
 	docker-compose -f srcs/docker-compose.yml down
+	rm -rf /home/rvernon/data
 
 fclean: clean
 	docker system prune -a

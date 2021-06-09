@@ -3,34 +3,40 @@ services:
     nginx:
         container_name: nginx
         build: requirements/nginx/
-        hostname: rvernon.42.fr
         env_file:
             - ./.env
         ports:
             - 443:443
+        networks:
+                - my_net
         volumes:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         restart: always
         depends_on:
             - wordpress
 
-
     wordpress:
         container_name: wordpress
         volumes:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         build: requirements/wordpress/
+        networks:
+                - my_net
         env_file:
             - ./.env
         restart: always
         depends_on:
             - mariadb 
 
-
     mariadb:
         container_name: mariadb
         env_file:
             - ./.env
         build: requirements/mariadb/
+        restart: always
+        networks:
+                - my_net
         volumes:
-            - /home/rvernon/data/maridb:/var/www/mariadb
+            - /home/rvernon/data/maridb:/var/lib/mysql
+networks:
+        my_net:
