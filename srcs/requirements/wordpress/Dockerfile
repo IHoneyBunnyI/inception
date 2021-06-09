@@ -15,6 +15,7 @@ WORKDIR var/www/
 RUN mkdir data
 ADD https://wordpress.org/latest.tar.gz ./data/
 RUN cd data && tar -xf latest.tar.gz && rm -rf latest.tar.gz
+COPY wp-config.php ./data/wordpress/
 
 WORKDIR /
-CMD sh copy_wordpress.sh && /usr/sbin/php-fpm7 -F &&  sleep infinity
+CMD sh copy_wordpress.sh && /usr/sbin/php-fpm7 -F
