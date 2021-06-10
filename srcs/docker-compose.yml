@@ -8,7 +8,7 @@ services:
         ports:
             - 443:443
         networks:
-                - my_net
+                - my-net
         volumes:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         restart: always
@@ -21,7 +21,7 @@ services:
             - /home/rvernon/data/wordpress:/var/www/wordpress
         build: requirements/wordpress/
         networks:
-                - my_net
+                - my-net
         env_file:
             - ./.env
         restart: always
@@ -35,8 +35,8 @@ services:
         build: requirements/mariadb/
         restart: always
         networks:
-                - my_net
+                - my-net
         volumes:
             - /home/rvernon/data/maridb:/var/lib/mysql
 networks:
-        my_net:
+        my-net:
